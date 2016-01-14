@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://laohubuchiyu.github.io/"/>
-  <updated>2016-01-14T07:14:52.000Z</updated>
+  <updated>2016-01-14T07:31:30.000Z</updated>
   <id>http://laohubuchiyu.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[数据库设计(mysql)]]></title>
+    <title><![CDATA[数据库设计(针对mysql)]]></title>
     <link href="http://laohubuchiyu.github.io/2016/01/14/db_design/"/>
     <id>http://laohubuchiyu.github.io/2016/01/14/db_design/</id>
-    <published>2016-01-14T07:14:52.000Z</published>
-    <updated>2016-01-14T07:14:52.000Z</updated>
+    <published>2016-01-14T07:31:30.000Z</published>
+    <updated>2016-01-14T07:31:30.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u6570_u636E_u5E93_u8BBE_u8BA1_u539F_u5219"><a href="#u6570_u636E_u5E93_u8BBE_u8BA1_u539F_u5219" class="headerlink" title="数据库设计原则"></a>数据库设计原则</h2><ul>
 <li><p>减少数据冗余</p>
 </li>
@@ -30,7 +30,7 @@
 <li><p>高效访问</p>
 </li>
 </ul>
-<h2 id="u9700_u6C42_u5206_u6790"><a href="#u9700_u6C42_u5206_u6790" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="u9700_u6C42_u5206_u6790_u8981_u70B9_uFF1A"><a href="#u9700_u6C42_u5206_u6790_u8981_u70B9_uFF1A" class="headerlink" title="需求分析要点："></a>需求分析要点：</h3><ol>
+<h2 id="u9700_u6C42_u5206_u6790"><a href="#u9700_u6C42_u5206_u6790" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="u9700_u6C42_u5206_u6790_u8981_u70B9"><a href="#u9700_u6C42_u5206_u6790_u8981_u70B9" class="headerlink" title="需求分析要点"></a>需求分析要点</h3><ol>
 <li>存储数据是什么</li>
 <li>数据存储特点（时效性数据【定期清理机制】；没有时效性的数据）</li>
 <li>数据的生命周期（增长速度快，量大，应采用拆表分表方式设计）</li>
@@ -72,7 +72,10 @@
 <li>反范式化：互联网项目读操作远大于写操作,用空间换时间</li>
 </ol>
 <h2 id="u7EF4_u62A4_u4F18_u5316"><a href="#u7EF4_u62A4_u4F18_u5316" class="headerlink" title="维护优化"></a>维护优化</h2><h3 id="u7EF4_u62A4_u6570_u636E_u5B57_u5178"><a href="#u7EF4_u62A4_u6570_u636E_u5B57_u5178" class="headerlink" title="维护数据字典"></a>维护数据字典</h3><p> 导出数据字典sql</p>
-<pre><code>select a.table_name, b.table_comment, a.column_name, a.column_type, a.column_comment from INFORMATION_SCHEMA.COLUMNS a join INFORMATION_SCHEMA.TABLES b on a.table_schema = b.table_schema and a.table_name = b.table_name where a.table_name = &apos;customer&apos;;
+<pre><code>select a.table_name, b.table_comment, a.column_name, a.column_type, a.column_comment 
+from INFORMATION_SCHEMA.COLUMNS a 
+join INFORMATION_SCHEMA.TABLES b on a.table_schema = b.table_schema and a.table_name = b.table_name 
+where a.table_name = &apos;customer&apos;;
 </code></pre><h3 id="u7EF4_u62A4_u7D22_u5F15"><a href="#u7EF4_u62A4_u7D22_u5F15" class="headerlink" title="维护索引"></a>维护索引</h3><ul>
 <li>过多的索引不但会降低写的效率，也会降低多的效率</li>
 <li>清理索引碎片</li>
@@ -82,10 +85,8 @@
 <li>禁止select*</li>
 </ul>
 <h3 id="u62C6_u8868"><a href="#u62C6_u8868" class="headerlink" title="拆表"></a>拆表</h3><ul>
-<li><p>垂直拆分：为了控制表的宽度大小</p>
-</li>
-<li><p>水平拆分：分表，散表</p>
-</li>
+<li>垂直拆分：为了控制表的宽度大小</li>
+<li>水平拆分：分表，散表</li>
 </ul>
 ]]></content>
     <summary type="html">
